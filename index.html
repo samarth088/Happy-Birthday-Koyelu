@@ -52,7 +52,98 @@ button{
   color:#ff4d6d;
   animation:float 6s linear infinite;
 }
+@keyframes float{
+  0%{transform:translateY(0);opacity:1;}
+  100%{transform:translateY(-800px);opacity:0;}
+}
 
+/* BOOK */
+.book-container{
+  display:none;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  perspective:2000px;
+}
+
+.book{
+  width:90%;
+  max-width:800px;
+  height:80vh;
+  position:relative;
+}
+
+.page{
+  width:100%;
+  height:100%;
+  position:absolute;
+  background:white;
+  border-radius:15px;
+  padding:40px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+  transform-origin:left;
+  transition:transform 1s;
+  backface-visibility:hidden;
+  overflow-y:auto;
+}
+
+.page.flipped{
+  transform:rotateY(-180deg);
+}
+
+.glow{
+  text-align:center;
+  color:#e91e63;
+  text-shadow:0 0 10px #ff80ab,0 0 20px #ff4081;
+}
+
+/* PROPOSAL GLOW */
+.proposal-text{
+  text-align:center;
+  font-size:38px;
+  margin-top:30px;
+  color:#ff2e63;
+  animation:glowPulse 2s ease-in-out infinite;
+}
+@keyframes glowPulse{
+  0%{ text-shadow:0 0 10px #ff80ab,0 0 20px #ff4081; transform:scale(1);}
+  50%{ text-shadow:0 0 25px #ff1744,0 0 45px #ff4081; transform:scale(1.05);}
+  100%{ text-shadow:0 0 10px #ff80ab,0 0 20px #ff4081; transform:scale(1);}
+}
+
+.controls{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  display:none;
+}
+</style>
+</head>
+<body>
+
+<div class="login" id="loginBox">
+  <h1 id="countdown">Opening in 10...</h1>
+  <input type="password" id="pass" placeholder="Enter Secret">
+  <button onclick="unlock()">Unlock</button>
+</div>
+
+<div class="book-container" id="bookContainer">
+  <div class="book" id="book"></div>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+</audio>
+
+<div class="controls" id="controls">
+  <button onclick="prevPage()">⬅ Prev</button>
+  <button onclick="nextPage()">Next ➡</button>
+</div>
+
+<script>
+
+  
 // ===== ADD YOUR 50 PAGES HERE =====
 
 const pagesContent = [ 
