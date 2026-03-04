@@ -577,33 +577,3 @@ toh ye 30 pages sirf beginning honge.
 
 // ===================================
 
-const book=document.getElementById("book");
-
-pagesContent.forEach((content,i)=>{
-  let page=document.createElement("div");
-  page.className="page";
-  page.style.zIndex=pagesContent.length-i;
-  page.innerHTML=content;
-  book.appendChild(page);
-});
-
-let currentPage=0;
-
-function nextPage(){
-  if(currentPage<pagesContent.length){
-    book.children[currentPage].classList.add("flipped");
-    currentPage++;
-  }
-}
-
-function prevPage(){
-  if(currentPage>0){
-    currentPage--;
-    book.children[currentPage].classList.remove("flipped");
-  }
-}
-
-</script>
-
-</body>
-</html>
